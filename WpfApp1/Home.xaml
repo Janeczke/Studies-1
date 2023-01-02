@@ -1,0 +1,133 @@
+﻿<Page x:Class="WpfApp1.Home"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d"
+      d:DesignHeight="700"
+      d:DesignWidth="1200"
+      Title="Home">
+
+    <Page.Resources>
+        <!-- Templatka do poszczeglnego wydarzeń z listy -->
+        <DataTemplate x:Key="news">
+            <Border
+                Name="border"
+                Background="{Binding Path=background}"
+                BorderThickness="2"
+                BorderBrush="LightGray"
+                CornerRadius="2"
+                Padding="10"
+                Margin="5"
+                Width="600"
+                Visibility="{Binding Path=homePage}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Width="600" Margin="0,0,0,60">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="600" UriSource="{Binding Path=image}" />
+                        </Image.Source>
+                    </Image>
+                    
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontSize="30"
+                        FontWeight="ExtraBlack"
+                        Width="570"
+                        Margin="-30,400,0,0"
+                        TextWrapping="Wrap"
+                        TextAlignment="Justify"
+                        FontFamily="Century Gothic"
+                        Text="{Binding Path=title}" />
+
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        FontSize="20"
+                        Width="570"
+                        Margin="-30,10,0,0"
+                        TextWrapping="Wrap"
+                        TextAlignment="Justify"
+                        FontFamily="Century Gothic"
+                        Text="{Binding Path=description}"/>
+
+                    <!--
+                    <TextBlock Grid.Row="3" Grid.Column="0" Padding="0,0,5,0" Text="Urgent: "/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Margin="0,0,0,0" Text="{Binding Path=urgent}"/>
+                    -->
+                    
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Width="570"
+                        Margin="-30,10,0,0"
+                        TextWrapping="Wrap"
+                        TextAlignment="Justify"
+                        FontFamily="Century Gothic"
+                        Text="{Binding Path=content}"/>
+
+                    <Button
+                        Grid.Row="10"
+                        Grid.Column="0"
+                        Margin="-200,40,0,10"
+                        Content="Modify"
+                        Click="modify"
+                        Height="23"
+                        Width="75"
+                        Tag="{Binding Path=id}" />
+                    
+                    <Button
+                        Grid.Row="10"
+                        Grid.Column="0"
+                        Margin="180,40,0,10"
+                        Content="Delete"
+                        Click="delete"
+                        Height="23"
+                        Width="75"
+                        Tag="{Binding Path=id}" />
+                  </Grid>
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
+
+    <DockPanel>
+        <!-- Title -->
+        <Label
+            DockPanel.Dock="Top"
+            FontSize="18"
+            Margin="5"
+            Content="Breaking news" />
+
+        <Button
+            DockPanel.Dock="Top"
+            Margin="0,0,0,20"
+            Content="Add"
+            Click="add"
+            Height="23"
+            Width="75" />
+
+        <!-- Przesłanie listy wydarzeń do templatki -->
+        <ListBox
+            x:Name="news_list"
+            ItemsSource="{Binding}"
+            ItemTemplate="{StaticResource news}"
+            HorizontalContentAlignment="Stretch"
+            IsSynchronizedWithCurrentItem="True" 
+            Margin="0,0,0,5" />
+    </DockPanel>
+</Page>

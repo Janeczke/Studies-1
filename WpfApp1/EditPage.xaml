@@ -1,0 +1,117 @@
+﻿<Page x:Class="WpfApp1.EditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="800"
+      Title="EditPage"
+      Background="LightGray">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Title -->
+        <Label
+            DockPanel.Dock="Top"
+            FontSize="28"
+            Margin="5"
+            Content="Edit breaking news" />
+
+        <Label
+            Grid.Row="1"
+            Grid.Column="0"
+            FontSize="18"
+            Content="Title" />
+
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Name="TextBoxTitle"
+            Margin="5,5,389,48" />
+
+        <Label
+            Grid.Row="2"
+            Grid.Column="0"
+            FontSize="18"
+            Content="Description" />
+
+        <TextBox
+            Grid.Row="2"
+            Grid.Column="1"
+            Name="TextBoxDescription"
+            Margin="5,5,368,22" />
+
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            FontSize="18"
+            Content="Image" />
+
+        <!--
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="1"
+            Name="TextBoxImage"
+            Margin="5,5,389,48" />
+        -->
+
+        <Button
+            Name="TextBoxImage"
+            Grid.Row="3"
+            Grid.Column="1"
+            Margin="5,5,389,48"
+            Content="Add photo"
+            Click="addPhoto"
+            Height="23"
+            Width="75"
+            Tag="{Binding Path=id}" />        
+
+        <Label
+            Grid.Row="4"
+            Grid.Column="0"
+            FontSize="18"
+            Content="Urgent" />
+
+        <ComboBox
+            Name="TextUrgent"
+            Grid.Row="4"
+            Margin="5,5,368,10"
+            Grid.Column="1">
+            <ComboBoxItem IsSelected="True">low</ComboBoxItem>
+            <ComboBoxItem>moderate</ComboBoxItem>
+            <ComboBoxItem>high</ComboBoxItem>
+            <ComboBoxItem>extreme</ComboBoxItem>
+        </ComboBox>
+
+        <Label
+            Grid.Row="5"
+            Grid.Column="0"
+            FontSize="18"
+            Content="Content" />
+
+        <TextBox
+            Grid.Row="5"
+            Grid.Column="1"
+            Name="TextContent"
+            Margin="5,5,236,10" />
+
+        <Button Grid.Row="6" Grid.Column="0" Margin="150,0,0,0" Content="Save" Click="save" Height="23" Width="75" Tag="{Binding Path=id}" />
+        <Button Grid.Row="6" Grid.Column="1" Margin="0,0,0,0" Content="Discard" Click="discard" Height="23" Width="75" Tag="{Binding Path=id}" />
+    </Grid>
+</Page>
